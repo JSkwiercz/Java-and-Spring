@@ -1,4 +1,4 @@
-package com.appsfortest.app.ws;
+package com.appsfortest.app.ws.io.repositories;
 
 import com.appsfortest.app.ws.io.entity.UserEntity;
 import org.springframework.data.repository.CrudRepository;

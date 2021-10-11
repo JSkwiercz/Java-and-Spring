@@ -16,8 +16,8 @@ public class UserController {
     UserService userService;
 
     @GetMapping
-    public void getUser() {
-
+    public String getUser() {
+        return("Welcome!");
     }
 
     @PostMapping
