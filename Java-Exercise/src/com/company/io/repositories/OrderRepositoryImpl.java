@@ -65,7 +65,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         FileOutputStream fos = new FileOutputStream("orders.txt");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         for (Order order: orders) {
-            oos.writeBytes(order.getName());
+            oos.writeBytes(order.getName() + "\n");
             for(Pizza pizza: order.getCheck()) {
                 oos.writeBytes(pizza.toString());
             }
