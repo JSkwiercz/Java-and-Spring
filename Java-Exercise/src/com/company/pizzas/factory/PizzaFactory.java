@@ -8,11 +8,12 @@ import java.util.*;
 
 public class PizzaFactory implements AbstractPizzaFactory{
 
-    private List<Ingredient> ingredients = new ArrayList<>();
 
 
     @Override
     public Pizza createPizza(String name, List<Ingredient> addTo, List<Ingredient> removeFrom) {
+        List<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(IngredientsConstants.DOUGH);
         ingredients.add(IngredientsConstants.TOMATO_SAUCE);
         ingredients.add(IngredientsConstants.CHEESE);
 
@@ -21,7 +22,9 @@ public class PizzaFactory implements AbstractPizzaFactory{
 
             for (int i = 0; i < ingredients.size(); i++) {
                 for(Ingredient x : removeFrom) {
-                    if (ingredients.get(i).getName().equals(x.getName())) ingredients.remove(i);
+                    if (ingredients.get(i).getName().equals(x.getName())) {
+                        ingredients.remove(i);
+                    }
                 }
             }
             return new Pizza(PizzaConstants.MARGHERITA, "Normal", ingredients);
@@ -33,18 +36,22 @@ public class PizzaFactory implements AbstractPizzaFactory{
 
             for (int i = 0; i < ingredients.size(); i++) {
                 for(Ingredient x : removeFrom) {
-                    if (ingredients.get(i).getName().equals(x.getName())) ingredients.remove(i);
+                    if (ingredients.get(i).getName().equals(x.getName())) {
+                        ingredients.remove(i);
+                    }
                 }
             }
 
-            return new Pizza(PizzaConstants.MARGHERITA, "Normal", ingredients);
+            return new Pizza(PizzaConstants.CAPRICIOSA, "Normal", ingredients);
 
         }
         if(name.equalsIgnoreCase(PizzaConstants.CALZONE)) {
             ingredients.addAll(addTo);
             for (int i = 0; i < ingredients.size(); i++) {
                 for(Ingredient x : removeFrom) {
-                    if (ingredients.get(i).getName().equals(x.getName())) ingredients.remove(i);
+                    if (ingredients.get(i).getName().equals(x.getName())) {
+                        ingredients.remove(i);
+                    }
                 }
             }
             return new Pizza(PizzaConstants.CALZONE, "Calzone", ingredients);

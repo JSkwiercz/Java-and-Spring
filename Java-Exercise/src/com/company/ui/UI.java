@@ -17,52 +17,55 @@ import java.util.List;
 
 public class UI {
     private AbstractPizzaFactory pizzaFactory = new PizzaFactory();
-    private List<Pizza> pizzas = new ArrayList<>();
     private OrderController orderController = new OrderController();
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public void run() throws IOException {
+        String input = "";
+        while(!input.equals("C")) {
 
-        System.out.println("Welcome to Pizza Acturis, make your order:\n1) Pizza Margherita\n2) Pizza Capriciosa\n3) Calzone");
-        String input = reader.readLine();
-        while (!input.equals("4")) {
-            switch (input) {
-                case "1" -> {
-                    List<Ingredient> addTo = askForAdditions();
-                    List<Ingredient> removeFrom = askForRemove();
-                    Pizza pizza = pizzaFactory.createPizza(PizzaConstants.MARGHERITA, addTo, removeFrom);
-                    pizzas.add(pizza);
+            List<Pizza> pizzas = new ArrayList<>();
+            System.out.println("Welcome to Pizza Acturis, make your order:\n1) Pizza Margherita\n2) Pizza Capriciosa\n3) Calzone");
+            input = reader.readLine();
+            while (!input.equals("4")) {
+                switch (input) {
+                    case "1" -> {
+                        List<Ingredient> addTo = askForAdditions();
+                        List<Ingredient> removeFrom = askForRemove();
+                        Pizza pizza = pizzaFactory.createPizza(PizzaConstants.MARGHERITA, addTo, removeFrom);
+                        pizzas.add(pizza);
+                    }
+                    case "2" -> {
+                        List<Ingredient> addTo = askForAdditions();
+                        List<Ingredient> removeFrom = askForRemove();
+                        Pizza pizza = pizzaFactory.createPizza(PizzaConstants.CAPRICIOSA, addTo, removeFrom);
+                        pizzas.add(pizza);
+                    }
+                    case "3" -> {
+                        List<Ingredient> addTo = askForAdditions();
+                        List<Ingredient> removeFrom = askForRemove();
+                        Pizza pizza = pizzaFactory.createPizza(PizzaConstants.CALZONE, addTo, removeFrom);
+                        pizzas.add(pizza);
+                    }
+                    default -> System.out.println("Wrong number");
                 }
-                case "2" -> {
-                    List<Ingredient> addTo = askForAdditions();
-                    List<Ingredient> removeFrom = askForRemove();
-                    Pizza pizza = pizzaFactory.createPizza(PizzaConstants.CAPRICIOSA, addTo, removeFrom);
-                    pizzas.add(pizza);
-                }
-                case "3" -> {
-                    List<Ingredient> addTo = askForAdditions();
-                    List<Ingredient> removeFrom = askForRemove();
-                    Pizza pizza = pizzaFactory.createPizza(PizzaConstants.CALZONE, addTo, removeFrom);
-                    pizzas.add(pizza);
-                }
-                default -> System.out.println("Wrong number");
+                System.out.println("If you want to add another pizza, type number from 1-3\nIf you want to finish you order, type 4");
+                input = reader.readLine();
             }
-            System.out.println("If you want to add another pizza, type number from 1-3\nIf you want to finish you order, type 4");
+
+            System.out.println("Insert your name: ");
+            PizzaOrderModel order = new PizzaOrderModel();
+            input = reader.readLine();
+            order.setUserName(input);
+            order.setPizzas(pizzas);
+            orderController.makeOrder(order);
+            System.out.println("If you want to make new order, type Y\nIf you want to close app, type C");
             input = reader.readLine();
         }
-
-        System.out.println("Insert your name: ");
-        PizzaOrderModel order = new PizzaOrderModel();
-        input = reader.readLine();
-        order.setUserName(input);
-        order.setPizzas(pizzas);
-        orderController.makeOrder(order);
-
     }
 
     public List<Ingredient> askForAdditions() throws IOException{
         List<Ingredient> addTo = new ArrayList<>();
-        System.out.println("Do you want to add some ingredients? (Y/N)");
         String input = reader.readLine();
         if (input.equals("Y")) {
             System.out.println("List of ingredients:\n1) Cheese\n2) Tomato\n3) Basil\n4) Ham\n5) Salami\n6) Spinach\n7) Pineapple\n8) Mushrooms\n9) End adding");

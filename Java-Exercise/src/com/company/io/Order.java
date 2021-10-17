@@ -1,23 +1,23 @@
 package com.company.io;
 
-import com.company.dto.UserDto;
+import com.company.dto.OrderDto;
 import com.company.pizzas.Pizza;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class Order {
     private String name;
     private List<Pizza> check = new ArrayList<>();
 
-    public User(User user) {
-        this.name = user.getName();
-        this.check = user.getCheck();
+    public Order(Order order) {
+        this.name = order.getName();
+        this.check = order.getCheck();
     }
 
-    public User(UserDto userDto) {
-        this.name = userDto.getName();
-        this.check = userDto.getCheck();
+    public Order(OrderDto orderDto) {
+        this.name = orderDto.getName();
+        this.check = orderDto.getCheck();
     }
 
     public String getName() {

@@ -42,15 +42,16 @@ public class Pizza {
 
     public double getPrice() {
         double price = 0;
-        for (Ingredient i : ingredients) price += i.getPrice();
+        for (Ingredient i : ingredients) {
+            price += i.getPrice();
+        }
         return price;
     }
 
     @Override
     public String toString() {
         StringBuilder returnValue = new StringBuilder();
-        returnValue.append(getName()).append("\n").append("Dough: ").append(getDough());
-        returnValue.append("Ingredients: \n");
+        returnValue.append(getName()).append("\n").append("Dough: ").append(getDough()).append("\nIngredients: \n");
         for (Ingredient i : ingredients) {
             returnValue.append(i.getName()).append("\n");
         }

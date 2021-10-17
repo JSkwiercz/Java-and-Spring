@@ -1,23 +1,22 @@
 package com.company.dto;
 
-import com.company.io.User;
+import com.company.io.Order;
 import com.company.pizzas.Pizza;
 import com.company.ui.model.request.PizzaOrderModel;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDto implements Serializable {
+public class OrderDto{
     private String name;
     private List<Pizza> check = new ArrayList<>();
 
-    public UserDto(User user) {
-        this.name = user.getName();
-        this.check = user.getCheck();
+    public OrderDto(Order order) {
+        this.name = order.getName();
+        this.check = order.getCheck();
     }
 
-    public UserDto(PizzaOrderModel order) {
+    public OrderDto(PizzaOrderModel order) {
         this.name = order.getUserName();
         this.check = (order.getPizzas());
     }

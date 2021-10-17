@@ -1,37 +1,25 @@
 package com.company.ui.controller;
 
-import com.company.dto.UserDto;
-import com.company.service.UserService;
-import com.company.service.UserServiceImpl;
+import com.company.dto.OrderDto;
+import com.company.service.OrderService;
+import com.company.service.OrderServiceImpl;
 import com.company.ui.model.request.PizzaOrderModel;
 import com.company.ui.model.response.OrderResponse;
 
 public class OrderController {
 
-    UserService userService = new UserServiceImpl();
+    OrderService orderService = new OrderServiceImpl();
 
     public OrderResponse makeOrder(PizzaOrderModel pizzaOrder) {
 
         OrderResponse returnValue = new OrderResponse();
 
-        UserDto userDto = new UserDto(pizzaOrder);
-        UserDto createdUser = userService.createUser(userDto);
+        OrderDto orderDto = new OrderDto(pizzaOrder);
+        OrderDto createdUser = orderService.sendOrder(orderDto);
 
         returnValue.setUserName(createdUser.getName());
         returnValue.setCheck(createdUser.getCheck());
         return returnValue;
 
-    }
-
-    public OrderResponse updateOrder(PizzaOrderModel pizzaOrder) {
-
-        OrderResponse returnValue = new OrderResponse();
-
-        UserDto userDto = new UserDto(pizzaOrder);
-        UserDto updatedUser = userService.updateUser(userDto);
-
-        returnValue.setUserName(updatedUser.getName());
-        returnValue.setCheck(updatedUser.getCheck());
-        return returnValue;
     }
 }
