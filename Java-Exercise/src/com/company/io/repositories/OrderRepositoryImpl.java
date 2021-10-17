@@ -31,11 +31,6 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public Order save(Order order) {
-        try {
-            orders = loadFile();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
 
         this.orders.add(order);
         try {
@@ -49,12 +44,6 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public Order update(Order order) {
-
-        try {
-            orders = loadFile();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
 
         Order updateOrder = findByName(order.getName());
         for (Pizza p : order.getCheck()) {
@@ -75,15 +64,12 @@ public class OrderRepositoryImpl implements OrderRepository {
     private void writeFile() throws IOException {
         FileOutputStream fos = new FileOutputStream("orders.txt");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(orders);
+        for (Order order: orders) {
+            oos.writeBytes(order.getName());
+            for(Pizza pizza: order.getCheck()) {
+                oos.writeBytes(pizza.toString());
+            }
+        }
         oos.close();
-    }
-
-    private List<Order> loadFile() throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream("orders.txt");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        List<Order> order = (List<Order>) ois.readObject();
-        ois.close();
-        return order;
     }
 }

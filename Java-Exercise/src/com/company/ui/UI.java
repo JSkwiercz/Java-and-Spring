@@ -23,7 +23,6 @@ public class UI {
     public void run() throws IOException {
         String input = "";
         while(!input.equals("C")) {
-
             List<Pizza> pizzas = new ArrayList<>();
             System.out.println("Welcome to Pizza Acturis, make your order:\n1) Pizza Margherita\n2) Pizza Capriciosa\n3) Calzone");
             input = reader.readLine();
@@ -66,6 +65,7 @@ public class UI {
 
     public List<Ingredient> askForAdditions() throws IOException{
         List<Ingredient> addTo = new ArrayList<>();
+        System.out.println("Do you want to add some ingredients? (Y/N)");
         String input = reader.readLine();
         if (input.equals("Y")) {
             System.out.println("List of ingredients:\n1) Cheese\n2) Tomato\n3) Basil\n4) Ham\n5) Salami\n6) Spinach\n7) Pineapple\n8) Mushrooms\n9) End adding");
