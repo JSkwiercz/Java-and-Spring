@@ -13,7 +13,7 @@ public class PizzaFactory implements AbstractPizzaFactory{
     public Pizza createPizza(String name, List<Ingredients> addTo, List<Ingredients> removeFrom) {
         List<Ingredients> ingredients = new ArrayList<>();
         ingredients.add(Ingredients.DOUGH);
-        ingredients.add(Ingredients.TOMATO_SAUCE);
+        ingredients.add(Ingredients.TOMATOSAUCE);
         ingredients.add(Ingredients.CHEESE);
 
         if(name.equalsIgnoreCase(PizzaConstants.MARGHERITA)) {

@@ -18,7 +18,7 @@ public class PizzaFactoryTest {
         List<Ingredients> removeFrom = new ArrayList<>();
         List<Ingredients> ingredients = new ArrayList<>();
         ingredients.add(Ingredients.DOUGH);
-        ingredients.add(Ingredients.TOMATO_SAUCE);
+        ingredients.add(Ingredients.TOMATOSAUCE);
         ingredients.add(Ingredients.CHEESE);
         Pizza margherita = new Pizza("Margherita", "Normal", ingredients);
 
@@ -35,7 +35,7 @@ public class PizzaFactoryTest {
         List<Ingredients> removeFrom = new ArrayList<>();
         List<Ingredients> ingredients = new ArrayList<>();
         ingredients.add(Ingredients.DOUGH);
-        ingredients.add(Ingredients.TOMATO_SAUCE);
+        ingredients.add(Ingredients.TOMATOSAUCE);
         ingredients.add(Ingredients.CHEESE);
         ingredients.add(Ingredients.HAM);
         ingredients.add(Ingredients.PINEAPPLE);

@@ -13,6 +13,11 @@ public class Order {
     public Order() {
     }
 
+    public Order(Order order) {
+        this.name = order.getName();
+        this.check = order.getCheck();
+    }
+
     public Order(OrderDto orderDto) {
         this.name = orderDto.getName();
         this.check = orderDto.getCheck();

@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDto updateOrder(OrderDto orderDto) {
 
-        Order order = orderRepository.findByName(orderDto.getName());
+        Order order = new Order(orderDto);
 
         Order updatedOrderDetails = orderRepository.update(order);
 

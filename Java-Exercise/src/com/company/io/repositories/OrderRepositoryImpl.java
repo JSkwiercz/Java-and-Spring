@@ -66,7 +66,7 @@ public class OrderRepositoryImpl implements OrderRepository {
             e.printStackTrace();
         }
 
-        Order updateOrder = findByName(order.getName());
+        Order updateOrder = new Order(findByName(order.getName()));
         for (Pizza p : order.getCheck()) {
             updateOrder.addPizza(p);
         }
@@ -98,6 +98,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         FileInputStream fis = new FileInputStream("orders.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(fis));
         this.orders.clear();
+
         String strLine;
         while ((strLine = br.readLine()) != null) {
             String[] line = strLine.split(";");
@@ -109,7 +110,7 @@ public class OrderRepositoryImpl implements OrderRepository {
                 String[] ings = piz[2].split(",");
                 List<Ingredients> ingredients = new ArrayList<>();
                 for (int j = 0; j < ings.length; j++) {
-                    Ingredients ingredient = Ingredients.findIngredient(ings[j]);
+                    Ingredients ingredient = Ingredients.valueOf(getName(ings[j]));
                     ingredients.add(ingredient);
                 }
                 Pizza pizza = new Pizza(piz[0], piz[1], ingredients);
@@ -120,5 +121,9 @@ public class OrderRepositoryImpl implements OrderRepository {
         }
 
         fis.close();
+    }
+
+    private String getName(String ing) {
+        return ing.replaceAll("\\s", "").toUpperCase();
     }
 }
