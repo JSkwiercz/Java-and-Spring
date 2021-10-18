@@ -1,6 +1,6 @@
 package com.company.pizzas;
 
-import com.company.pizzas.ingredients.Ingredient;
+import com.company.pizzas.ingredients.Ingredients;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.List;
 public class Pizza {
     private String name;
     private String dough;
-    private List<Ingredient> ingredients = new ArrayList<>();
+    private List<Ingredients> ingredients = new ArrayList<>();
 
-    public Pizza(String name, String dough, List<Ingredient> ingredients) {
+    public Pizza(String name, String dough, List<Ingredients> ingredients) {
         this.name = name;
         this.dough = dough;
         this.ingredients = ingredients;
@@ -32,17 +32,17 @@ public class Pizza {
         this.dough = dough;
     }
 
-    public List<Ingredient> getIngredients() {
+    public List<Ingredients> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
+    public void setIngredients(List<Ingredients> ingredients) {
         this.ingredients = ingredients;
     }
 
     public double getPrice() {
         double price = 0;
-        for (Ingredient i : ingredients) {
+        for (Ingredients i : ingredients) {
             price += i.getPrice();
         }
         return price;
@@ -52,7 +52,7 @@ public class Pizza {
     public String toString() {
         StringBuilder returnValue = new StringBuilder();
         returnValue.append(getName()).append(":").append(getDough()).append(":");
-        for (Ingredient i : ingredients) {
+        for (Ingredients i : ingredients) {
             returnValue.append(i.getName()).append(",");
         }
         returnValue.deleteCharAt(returnValue.length() - 1).append(";");

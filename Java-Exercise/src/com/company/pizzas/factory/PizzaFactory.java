@@ -1,8 +1,7 @@
 package com.company.pizzas.factory;
 
 import com.company.pizzas.Pizza;
-import com.company.pizzas.ingredients.Ingredient;
-import com.company.pizzas.ingredients.IngredientsConstants;
+import com.company.pizzas.ingredients.Ingredients;
 
 import java.util.*;
 
@@ -11,17 +10,17 @@ public class PizzaFactory implements AbstractPizzaFactory{
 
 
     @Override
-    public Pizza createPizza(String name, List<Ingredient> addTo, List<Ingredient> removeFrom) {
-        List<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(IngredientsConstants.DOUGH);
-        ingredients.add(IngredientsConstants.TOMATO_SAUCE);
-        ingredients.add(IngredientsConstants.CHEESE);
+    public Pizza createPizza(String name, List<Ingredients> addTo, List<Ingredients> removeFrom) {
+        List<Ingredients> ingredients = new ArrayList<>();
+        ingredients.add(Ingredients.DOUGH);
+        ingredients.add(Ingredients.TOMATO_SAUCE);
+        ingredients.add(Ingredients.CHEESE);
 
         if(name.equalsIgnoreCase(PizzaConstants.MARGHERITA)) {
             ingredients.addAll(addTo);
 
             for (int i = 0; i < ingredients.size(); i++) {
-                for(Ingredient x : removeFrom) {
+                for(Ingredients x : removeFrom) {
                     if (ingredients.get(i).getName().equals(x.getName())) {
                         ingredients.remove(i);
                     }
@@ -30,12 +29,12 @@ public class PizzaFactory implements AbstractPizzaFactory{
             return new Pizza(PizzaConstants.MARGHERITA, "Normal", ingredients);
         }
         if(name.equalsIgnoreCase(PizzaConstants.CAPRICIOSA)) {
-            ingredients.add(IngredientsConstants.HAM);
-            ingredients.add(IngredientsConstants.MUSHROOMS);
+            ingredients.add(Ingredients.HAM);
+            ingredients.add(Ingredients.MUSHROOMS);
             ingredients.addAll(addTo);
 
             for (int i = 0; i < ingredients.size(); i++) {
-                for(Ingredient x : removeFrom) {
+                for(Ingredients x : removeFrom) {
                     if (ingredients.get(i).getName().equals(x.getName())) {
                         ingredients.remove(i);
                     }
@@ -48,7 +47,7 @@ public class PizzaFactory implements AbstractPizzaFactory{
         if(name.equalsIgnoreCase(PizzaConstants.CALZONE)) {
             ingredients.addAll(addTo);
             for (int i = 0; i < ingredients.size(); i++) {
-                for(Ingredient x : removeFrom) {
+                for(Ingredients x : removeFrom) {
                     if (ingredients.get(i).getName().equals(x.getName())) {
                         ingredients.remove(i);
                     }

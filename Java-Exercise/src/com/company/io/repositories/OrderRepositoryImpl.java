@@ -2,8 +2,7 @@ package com.company.io.repositories;
 
 import com.company.io.Order;
 import com.company.pizzas.Pizza;
-import com.company.pizzas.ingredients.Ingredient;
-import com.company.pizzas.ingredients.IngredientsConstants;
+import com.company.pizzas.ingredients.Ingredients;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -96,7 +95,6 @@ public class OrderRepositoryImpl implements OrderRepository {
     private void loadFile() throws IOException {
         FileInputStream fis = new FileInputStream("orders.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-        IngredientsConstants constants = new IngredientsConstants();
 
         String strLine;
         while ((strLine = br.readLine()) != null) {
@@ -107,9 +105,9 @@ public class OrderRepositoryImpl implements OrderRepository {
             for (int i = 1; i < line.length; i++) {
                 String[] piz = line[i].split(":");
                 String[] ings = piz[2].split(",");
-                List<Ingredient> ingredients = new ArrayList<>();
+                List<Ingredients> ingredients = new ArrayList<>();
                 for (int j = 0; j < ings.length; j++) {
-                    Ingredient ingredient = constants.findIngredient(ings[j]);
+                    Ingredients ingredient = Ingredients.valueOf(ings[j]);
                     ingredients.add(ingredient);
                 }
                 Pizza pizza = new Pizza(piz[0], piz[1], ingredients);

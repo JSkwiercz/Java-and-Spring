@@ -3,8 +3,7 @@ package test;
 import com.company.pizzas.Pizza;
 import com.company.pizzas.factory.AbstractPizzaFactory;
 import com.company.pizzas.factory.PizzaFactory;
-import com.company.pizzas.ingredients.Ingredient;
-import com.company.pizzas.ingredients.IngredientsConstants;
+import com.company.pizzas.ingredients.Ingredients;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,12 +14,12 @@ public class PizzaFactoryTest {
 
     @Test
     void shouldMakeMargherita() {
-        List<Ingredient> addTo = new ArrayList<>();
-        List<Ingredient> removeFrom = new ArrayList<>();
-        List<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(IngredientsConstants.DOUGH);
-        ingredients.add(IngredientsConstants.TOMATO_SAUCE);
-        ingredients.add(IngredientsConstants.CHEESE);
+        List<Ingredients> addTo = new ArrayList<>();
+        List<Ingredients> removeFrom = new ArrayList<>();
+        List<Ingredients> ingredients = new ArrayList<>();
+        ingredients.add(Ingredients.DOUGH);
+        ingredients.add(Ingredients.TOMATO_SAUCE);
+        ingredients.add(Ingredients.CHEESE);
         Pizza margherita = new Pizza("Margherita", "Normal", ingredients);
 
         AbstractPizzaFactory pizzaFactory = new PizzaFactory();
@@ -32,19 +31,19 @@ public class PizzaFactoryTest {
 
     @Test
     void shouldMakeCapriciosaWithPineappleWithoutMushrooms() {
-        List<Ingredient> addTo = new ArrayList<>();
-        List<Ingredient> removeFrom = new ArrayList<>();
-        List<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(IngredientsConstants.DOUGH);
-        ingredients.add(IngredientsConstants.TOMATO_SAUCE);
-        ingredients.add(IngredientsConstants.CHEESE);
-        ingredients.add(IngredientsConstants.HAM);
-        ingredients.add(IngredientsConstants.PINEAPPLE);
+        List<Ingredients> addTo = new ArrayList<>();
+        List<Ingredients> removeFrom = new ArrayList<>();
+        List<Ingredients> ingredients = new ArrayList<>();
+        ingredients.add(Ingredients.DOUGH);
+        ingredients.add(Ingredients.TOMATO_SAUCE);
+        ingredients.add(Ingredients.CHEESE);
+        ingredients.add(Ingredients.HAM);
+        ingredients.add(Ingredients.PINEAPPLE);
 
         Pizza capriciosa = new Pizza("Capriciosa", "Normal", ingredients);
 
-        addTo.add(IngredientsConstants.PINEAPPLE);
-        removeFrom.add(IngredientsConstants.MUSHROOMS);
+        addTo.add(Ingredients.PINEAPPLE);
+        removeFrom.add(Ingredients.MUSHROOMS);
 
         AbstractPizzaFactory pizzaFactory = new PizzaFactory();
         Pizza pizza = pizzaFactory.createPizza("Capriciosa", addTo, removeFrom);
