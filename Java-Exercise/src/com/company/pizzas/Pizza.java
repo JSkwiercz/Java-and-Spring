@@ -55,7 +55,7 @@ public class Pizza {
         for (Ingredient i : ingredients) {
             returnValue.append(i.getName()).append(",");
         }
-        returnValue.deleteCharAt(returnValue.length() - 1).append(":").append(this.getPrice()).append(";");
+        returnValue.deleteCharAt(returnValue.length() - 1).append(";");
         return returnValue.toString();
     }
 }
