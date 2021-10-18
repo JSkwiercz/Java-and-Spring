@@ -47,6 +47,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         }
 
         this.orders.add(order);
+
         try {
             writeFile();
         } catch (IOException e) {
@@ -88,6 +89,7 @@ public class OrderRepositoryImpl implements OrderRepository {
             for (Pizza pizza : order.getCheck()) {
                 writer.write(pizza.toString());
             }
+            writer.write("\n");
         }
         writer.close();
     }
@@ -95,7 +97,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     private void loadFile() throws IOException {
         FileInputStream fis = new FileInputStream("orders.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-
+        this.orders.clear();
         String strLine;
         while ((strLine = br.readLine()) != null) {
             String[] line = strLine.split(";");
@@ -107,7 +109,7 @@ public class OrderRepositoryImpl implements OrderRepository {
                 String[] ings = piz[2].split(",");
                 List<Ingredients> ingredients = new ArrayList<>();
                 for (int j = 0; j < ings.length; j++) {
-                    Ingredients ingredient = Ingredients.valueOf(ings[j]);
+                    Ingredients ingredient = Ingredients.findIngredient(ings[j]);
                     ingredients.add(ingredient);
                 }
                 Pizza pizza = new Pizza(piz[0], piz[1], ingredients);

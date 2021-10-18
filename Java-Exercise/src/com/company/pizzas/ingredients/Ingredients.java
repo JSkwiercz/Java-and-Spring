@@ -28,5 +28,19 @@ public enum Ingredients {
     public double getPrice() {
         return price;
     }
+
+    public static Ingredients findIngredient(String name) {
+        if(name.equals(DOUGH.getName())) return DOUGH;
+        if(name.equals(CHEESE.getName())) return CHEESE;
+        if(name.equals(TOMATO_SAUCE.getName())) return TOMATO_SAUCE;
+        if(name.equals(TOMATO.getName())) return TOMATO;
+        if(name.equals(BASIL.getName())) return BASIL;
+        if(name.equals(HAM.getName())) return HAM;
+        if(name.equals(SALAMI.getName())) return SALAMI;
+        if(name.equals(SPINACH.getName())) return SPINACH;
+        if(name.equals(PINEAPPLE.getName())) return PINEAPPLE;
+        if(name.equals(MUSHROOMS.getName())) return MUSHROOMS;
+        return null;
+    }
 }
 
