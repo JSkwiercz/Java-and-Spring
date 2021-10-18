@@ -10,9 +10,7 @@ public class Order {
     private String name;
     private List<Pizza> check = new ArrayList<>();
 
-    public Order(Order order) {
-        this.name = order.getName();
-        this.check = order.getCheck();
+    public Order() {
     }
 
     public Order(OrderDto orderDto) {

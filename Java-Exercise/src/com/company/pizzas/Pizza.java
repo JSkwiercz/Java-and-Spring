@@ -51,11 +51,11 @@ public class Pizza {
     @Override
     public String toString() {
         StringBuilder returnValue = new StringBuilder();
-        returnValue.append(getName()).append("\n").append("Dough: ").append(getDough()).append("\nIngredients: \n");
+        returnValue.append(getName()).append(":").append(getDough()).append(":");
         for (Ingredient i : ingredients) {
-            returnValue.append(i.getName()).append("\n");
+            returnValue.append(i.getName()).append(",");
         }
-        returnValue.append("Price: ").append(this.getPrice());
+        returnValue.deleteCharAt(returnValue.length() - 1).append(":").append(this.getPrice()).append(";");
         return returnValue.toString();
     }
 }
