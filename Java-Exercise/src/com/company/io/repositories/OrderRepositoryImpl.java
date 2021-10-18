@@ -83,15 +83,14 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     private void writeFile() throws IOException {
-        FileOutputStream fos = new FileOutputStream("orders.txt");
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        BufferedWriter writer = new BufferedWriter(new FileWriter("orders.txt"));
         for (Order order : orders) {
-            oos.writeBytes(order.getName() + ";");
+            writer.write(order.getName() + ";");
             for (Pizza pizza : order.getCheck()) {
-                oos.writeBytes(pizza.toString());
+                writer.write(pizza.toString());
             }
         }
-        oos.close();
+        writer.close();
     }
 
     private void loadFile() throws IOException {
